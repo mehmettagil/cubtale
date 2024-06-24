@@ -1,5 +1,6 @@
 import 'package:cubtale/core/constants/color_constants.dart';
 import 'package:cubtale/core/constants/string_constants.dart';
+import 'package:cubtale/core/init/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:cubtale/core/enum/image_constants.dart';
 
@@ -17,7 +18,7 @@ class CubTaleAppBar extends StatelessWidget implements PreferredSizeWidget {
           bottomRight: Radius.circular(30),
         )),
         toolbarHeight: 80,
-        backgroundColor: ColorConstants.greenLight,
+        backgroundColor: context.appTheme.colors.backgroundColor,
         elevation: 0,
         title: Row(
           children: [

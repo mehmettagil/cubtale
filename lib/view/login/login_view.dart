@@ -1,6 +1,5 @@
 import 'dart:js';
 
-import 'package:cubtale/core/constants/color_constants.dart';
 import 'package:cubtale/core/constants/string_constants.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
 import 'package:cubtale/view/login/appbar_widget.dart';
@@ -17,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstants.greenLight,
+      backgroundColor: context.appTheme.colors.backgroundColor,
       appBar: const CubTaleAppBar(),
       body: Container(
         decoration: const BoxDecoration(
@@ -26,7 +25,6 @@ class _LoginScreenState extends State<LoginScreen> {
               topLeft: Radius.circular(30),
             )),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
           children: [
             SizedBox(
               height: context.height / 10,
@@ -57,22 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           TextField(
                             onChanged: (value) {},
-                            decoration: const InputDecoration(
-                              filled: true,
-                              fillColor: ColorConstants.greenLight,
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: ColorConstants.greenLight,
-                                  ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: ColorConstants.greenLight,
-                                  ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                            ),
+                            decoration: _inputDecoration(context),
                             style: TextStyle(
                               color: Colors.black.withOpacity(0.5),
                             ),
@@ -91,22 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextField(
                             onChanged: (value) {},
                             obscureText: true,
-                            decoration: const InputDecoration(
-                              filled: true,
-                              fillColor: ColorConstants.greenLight,
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: ColorConstants.greenLight,
-                                  ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: ColorConstants.greenLight,
-                                  ),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15))),
-                            ),
+                            decoration: _inputDecoration(context),
                             style: TextStyle(
                               color: Colors.black.withOpacity(0.5),
                             ),
@@ -121,10 +89,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         GestureDetector(
                           onTap: () {},
                           child: Container(
-                            decoration: const BoxDecoration(
-                                color: ColorConstants.greenLight,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15))),
+                            decoration: BoxDecoration(
+                                color: context.appTheme.colors.backgroundColor,
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(15))),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 30, vertical: 10),
@@ -151,6 +119,23 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  InputDecoration _inputDecoration(BuildContext context) {
+    return InputDecoration(
+      filled: true,
+      fillColor: context.appTheme.colors.backgroundColor,
+      border: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: context.appTheme.colors.backgroundColor,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(15))),
+      enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: context.appTheme.colors.backgroundColor,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(15))),
     );
   }
 }
