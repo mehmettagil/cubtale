@@ -39,52 +39,100 @@ class CubTaleHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               height: 70,
               width: 150,
               child: IconConstants.watermark.toImage,
-            )
+            ),
+            Spacer(),
+            Text("Search by Mail",
+                style: TextStyle(
+                    color: context.appTheme.colors.textColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
+            _divider(),
+            Text("Search by ID",
+                style: TextStyle(
+                    color: context.appTheme.colors.textColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
+            _divider(),
+            Text("Search by Date",
+                style: TextStyle(
+                    color: context.appTheme.colors.textColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
+            Spacer(),
           ],
         ),
         actions: [
-          BlocBuilder<ColorThemeBloc, ColorThemeState>(
-            builder: (context, state) {
-              return GestureDetector(
-                onTap: () {
-                  final bloc = context.read<ColorThemeBloc>();
-                  if (context.appTheme.isDarkTheme) {
-                    bloc.addLightSelected();
-                  } else {
-                    bloc.addDarkSelected();
-                  }
-                },
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: Color(0xffd7f1ed),
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
-                  height: 50,
-                  width: 140,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(
-                          width: 40,
-                          height: 40,
-                          child: IconConstants.darkMode.toImage),
-                      Text(
-                        StringConstants.darkMode,
-                        style: TextStyle(
-                          color: context.appTheme.colors.textColor,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
+          Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: GestureDetector(
+                onTap: () {},
+                child: const MenuBurger(
+                  isOpen: false,
+                )),
           ),
           const SizedBox(
-            width: 30,
+            width: 40,
           )
         ],
       ),
     );
+  }
+
+  Padding _divider() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      child: Container(
+        height: 40,
+        width: 3,
+        color: Colors.red,
+      ),
+    );
+  }
+}
+
+class MenuBurger extends StatelessWidget {
+  const MenuBurger({
+    required this.isOpen,
+    super.key,
+  });
+  final bool isOpen;
+
+  @override
+  Widget build(BuildContext context) {
+    if (isOpen) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Row(
+          children: [
+            for (int i = 0; i < 3; i++)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(10)),
+                  height: 40,
+                  width: 4,
+                ),
+              )
+          ],
+        ),
+      );
+    } else {
+      return Column(
+        children: [
+          for (int i = 0; i < 3; i++)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.red, borderRadius: BorderRadius.circular(10)),
+                height: 4,
+                width: 40,
+              ),
+            )
+        ],
+      );
+    }
   }
 }
