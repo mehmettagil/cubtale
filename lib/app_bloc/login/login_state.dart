@@ -1,40 +1,38 @@
 part of 'login_bloc.dart';
 
 class LoginState extends Equatable {
-  const LoginState({
-    required this.email,
-    required this.password,
-    required this.processFailureOrUnitOption,
-  });
+  const LoginState(
+      {required this.email,
+      required this.password,
+      required this.processFailureOrUnitOption,
+      required this.showError});
 
   factory LoginState.initial() {
     return const LoginState(
-      email: "",
-      password: "",
-      processFailureOrUnitOption: None(),
-    );
+        email: "",
+        password: "",
+        processFailureOrUnitOption: None(),
+        showError: false);
   }
 
   final String email;
   final String password;
-  final Option<Either<LoginRepositoryFailure, bool>> processFailureOrUnitOption;
+  final Option<Either<LoginRepositoryFailure, UserModel>>
+      processFailureOrUnitOption;
+  final bool showError;
 
-  LoginState copyWith({
-    String? email,
-    String? password,
-    Option<Either<LoginRepositoryFailure, bool>>? processFailureOrUnitOption,
-  }) {
+  LoginState copyWith(
+      {String? email,
+      String? password,
+      Option<Either<LoginRepositoryFailure, UserModel>>?
+          processFailureOrUnitOption,
+      bool? showError}) {
     return LoginState(
-      email: email ?? this.email,
-      password: password ?? this.password,
-      processFailureOrUnitOption:
-          processFailureOrUnitOption ?? this.processFailureOrUnitOption,
-    );
-  }
-
-  bool get isLogin {
-    return processFailureOrUnitOption.fold(
-        () => false, (a) => a.fold((l) => false, (r) => r));
+        email: email ?? this.email,
+        password: password ?? this.password,
+        processFailureOrUnitOption:
+            processFailureOrUnitOption ?? this.processFailureOrUnitOption,
+        showError: showError ?? this.showError);
   }
 
   bool isValidEmail(String email) {
@@ -46,5 +44,5 @@ class LoginState extends Equatable {
   }
 
   @override
-  List<Object> get props => [email, password, processFailureOrUnitOption];
+  List<Object> get props => [email, password, processFailureOrUnitOption,showError];
 }

@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cubtale/basic_structure/failure/login/login_repository_failure.dart';
 import 'package:cubtale/basic_structure/repository/login/i_login_repository.dart';
 import 'package:cubtale/core/common/api_header.dart';
+import 'package:cubtale/core/model/user/user_model.dart';
 import 'package:cubtale/service/decode_response_body.dart';
 import 'package:cubtale/service/http_service.dart';
 import 'package:dartz/dartz.dart';
@@ -13,7 +15,7 @@ class LoginRepository implements ILoginRepository {
   LoginRepository(this._client);
   final Client _client;
   @override
-  Future<Either<LoginRepositoryFailure, bool>> login({
+  Future<Either<LoginRepositoryFailure, UserModel>> login({
     required String email,
     required String password,
     required ApiHeader Function() apiHeaderCallback,
@@ -42,10 +44,11 @@ class LoginRepository implements ILoginRepository {
 
       if (generalFailure != null) return left(generalFailure);
 
-      return right(true);
+      return right(UserModel.fromMap(result));
     } on SocketException catch (_) {
       return left(const LoginRepositoryConnectionFailure());
     } catch (e) {
+      log(e.toString());
       return left(LoginRepositoryUnknownFailure(e.toString()));
     }
   }

@@ -1,4 +1,5 @@
 import 'package:cubtale/app_bloc/core/color_theme_bloc/color_theme_bloc.dart';
+import 'package:cubtale/app_bloc/login/login_bloc.dart';
 import 'package:cubtale/core/enum/theme_enum.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
 import 'package:cubtale/injection.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final injected = await setupInjection();
 
   runApp(const MyApp());
@@ -22,6 +24,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => getIt<ColorThemeBloc>()..addInitialized(),
+        ),
+        BlocProvider(
+          create: (_) => getIt<LoginBloc>(),
         ),
       ],
       child: BlocConsumer<ColorThemeBloc, ColorThemeState>(

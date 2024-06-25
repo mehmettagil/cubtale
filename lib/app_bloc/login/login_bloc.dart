@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cubtale/basic_structure/failure/login/login_repository_failure.dart';
 import 'package:cubtale/basic_structure/repository/login/i_login_repository.dart';
 import 'package:cubtale/core/mixin/api_header_getter_mixin.dart';
+import 'package:cubtale/core/model/user/user_model.dart';
 
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -21,6 +22,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>
     );
     on<LoginPasswordChangeEvent>(
       _onLoginPasswordChangeEvent,
+    );
+    on<LoginClearEvent>(
+      _onLoginClearEvent,
     );
     on<LoginCompleteEvent>(
       _onLoginCompleteEvent,
@@ -53,7 +57,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>
 
   Future<void> _onLoginCompleteEvent(
       LoginCompleteEvent event, Emitter<LoginState> emit) async {
-    if (state.isValidEmail(state.email) && state.password.isNotEmpty) {
+    if (state.email.isNotEmpty && state.password.isNotEmpty) {
       final checkLogin = await _iLoginRepository.login(
           email: state.email,
           password: state.password,
@@ -69,5 +73,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>
         ),
       ));
     }
+  }
+
+  Future<void> _onLoginClearEvent(
+      LoginClearEvent event, Emitter<LoginState> emit) async {
+    emit(state.copyWith(processFailureOrUnitOption: none()));
   }
 }
