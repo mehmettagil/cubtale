@@ -1,8 +1,13 @@
 import 'dart:io';
 
 import 'package:cubtale/app_bloc/core/color_theme_bloc/color_theme_bloc.dart';
+import 'package:cubtale/app_bloc/login/login_bloc.dart';
 import 'package:cubtale/basic_structure/manager/i_cache_manager.dart';
+import 'package:cubtale/basic_structure/manager/shared_preferences_cache_manager.dart';
+import 'package:cubtale/basic_structure/repository/login/i_login_repository.dart';
+import 'package:cubtale/basic_structure/repository/login/login_repository.dart';
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,6 +32,7 @@ Future<bool> setupInjection() async {
 
 Future<bool> _injectPackages() async {
   final pref = await SharedPreferences.getInstance();
+  getIt.registerSingleton<Client>(Client());
 
   getIt.registerSingleton<SharedPreferences>(pref);
 
@@ -36,6 +42,9 @@ Future<bool> _injectPackages() async {
 Future<bool> _injectBlocs() async {
   getIt.registerFactory(() => ColorThemeBloc(
         getIt<ICacheManager>(),
+      ));
+  getIt.registerFactory(() => LoginBloc(
+        getIt<ILoginRepository>(),
       ));
 
   return true;
@@ -52,8 +61,11 @@ Future<bool> _injectFacades() async {
   //   getIt<MetricHttpClient>(),
   //   getIt<IUserStorage>(),
   // ));
-  getIt.registerSingleton<ICacheManager>(SpCacheController(
+  getIt.registerSingleton<ICacheManager>(SharedPreferencesCacheManager(
     getIt<SharedPreferences>(),
+  ));
+  getIt.registerSingleton<ILoginRepository>(LoginRepository(
+    getIt<Client>(),
   ));
 
   return true;

@@ -1,9 +1,11 @@
 import 'dart:js';
 
+import 'package:cubtale/app_bloc/login/login_bloc.dart';
 import 'package:cubtale/core/constants/string_constants.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
-import 'package:cubtale/view/login/appbar_widget.dart';
+import 'package:cubtale/view/login/widget/cubtale_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -53,12 +55,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           const SizedBox(
                             height: 30,
                           ),
-                          TextField(
-                            onChanged: (value) {},
-                            decoration: _inputDecoration(context),
-                            style: TextStyle(
-                              color: Colors.black.withOpacity(0.5),
-                            ),
+                          BlocBuilder<LoginBloc, LoginState>(
+                            buildWhen: (previous, current) {
+                              return previous.email != current.email;
+                            },
+                            builder: (context, state) {
+                              return TextField(
+                                onChanged: (value) {
+                                  context
+                                      .read<LoginBloc>()
+                                      .addLoginEmailChangeEvent(email: value);
+                                },
+                                decoration: _inputDecoration(context),
+                                style: TextStyle(
+                                  color: Colors.black.withOpacity(0.5),
+                                ),
+                              );
+                            },
                           ),
                           const SizedBox(
                             height: 50,
@@ -71,13 +84,25 @@ class _LoginScreenState extends State<LoginScreen> {
                                 color: Colors.black.withOpacity(0.6)),
                           ),
                           const SizedBox(height: 30),
-                          TextField(
-                            onChanged: (value) {},
-                            obscureText: true,
-                            decoration: _inputDecoration(context),
-                            style: TextStyle(
-                              color: Colors.black.withOpacity(0.5),
-                            ),
+                          BlocBuilder<LoginBloc, LoginState>(
+                            buildWhen: (previous, current) {
+                              return previous.password != current.password;
+                            },
+                            builder: (context, state) {
+                              return TextField(
+                                onChanged: (value) {
+                                  context
+                                      .read<LoginBloc>()
+                                      .addLoginPasswordChangeEvent(
+                                          password: value);
+                                },
+                                obscureText: true,
+                                decoration: _inputDecoration(context),
+                                style: TextStyle(
+                                  color: Colors.black.withOpacity(0.5),
+                                ),
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -86,26 +111,35 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       children: [
                         const Spacer(),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: context.appTheme.colors.backgroundColor,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(15))),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 10),
-                              child: Text(
-                                StringConstants.login,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black.withOpacity(0.6)),
+                        BlocBuilder<LoginBloc, LoginState>(
+                          builder: (context, state) {
+                            return GestureDetector(
+                              onTap: () {
+                                context
+                                    .read<LoginBloc>()
+                                    .addLoginCompleteEvent();
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color:
+                                        context.appTheme.colors.backgroundColor,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(15))),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 10),
+                                  child: Text(
+                                    StringConstants.login,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black.withOpacity(0.6)),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
+                            );
+                          },
                         ),
                         SizedBox(
                           width: context.width / 20,
