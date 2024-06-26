@@ -2,10 +2,13 @@ import 'dart:io';
 
 import 'package:cubtale/app_bloc/core/color_theme_bloc/color_theme_bloc.dart';
 import 'package:cubtale/app_bloc/login/login_bloc.dart';
+import 'package:cubtale/app_bloc/search/search_bloc.dart';
 import 'package:cubtale/basic_structure/manager/i_cache_manager.dart';
 import 'package:cubtale/basic_structure/manager/shared_preferences_cache_manager.dart';
 import 'package:cubtale/basic_structure/repository/login/i_login_repository.dart';
 import 'package:cubtale/basic_structure/repository/login/login_repository.dart';
+import 'package:cubtale/basic_structure/repository/search/i_search_repository.dart';
+import 'package:cubtale/basic_structure/repository/search/search_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
 
@@ -46,6 +49,9 @@ Future<bool> _injectBlocs() async {
   getIt.registerFactory(() => LoginBloc(
         getIt<ILoginRepository>(),
       ));
+  getIt.registerFactory(() => SearchBloc(
+        getIt<ISearchRepository>(),
+      ));
 
   return true;
 }
@@ -65,6 +71,9 @@ Future<bool> _injectFacades() async {
     getIt<SharedPreferences>(),
   ));
   getIt.registerSingleton<ILoginRepository>(LoginRepository(
+    getIt<Client>(),
+  ));
+  getIt.registerSingleton<ISearchRepository>(SearchRepository(
     getIt<Client>(),
   ));
 

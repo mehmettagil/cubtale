@@ -24,7 +24,7 @@ class LoginRepository implements ILoginRepository {
       final apiHeader = apiHeaderCallback();
       final uri = Uri(
         scheme: 'https',
-        host: HttpService.host,
+        host: HttpService.hostLogin,
         path: 'default/AdminPanelLogin',
       );
 

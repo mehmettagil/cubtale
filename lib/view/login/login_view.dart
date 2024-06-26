@@ -50,7 +50,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const HomeView()));
+                          builder: (context) => const HomeView(
+                                index: 1,
+                              )));
                 });
                 context.read<LoginBloc>().add(const LoginClearEvent());
               }
