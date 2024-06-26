@@ -22,22 +22,21 @@ class CustomerListPage extends StatelessWidget {
           children: [
             // Header
             const Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 2.0),
               child: Row(
                 children: [
                   Expanded(
-                      child:
-                          Text('Name', style: TextStyle(color: Colors.teal))),
+                      child: Text('Name',
+                          style: TextStyle(color: Colors.teal, fontSize: 13))),
                   Expanded(
-                      child:
-                          Text('Email', style: TextStyle(color: Colors.teal))),
+                      child: Text('Email',
+                          style: TextStyle(color: Colors.teal, fontSize: 13))),
                   Expanded(
-                      child:
-                          Text('Name', style: TextStyle(color: Colors.teal))),
+                      child: Text('Name',
+                          style: TextStyle(color: Colors.teal, fontSize: 13))),
                   Expanded(
-                      child:
-                          Text('Email', style: TextStyle(color: Colors.teal))),
+                      child: Text('Email',
+                          style: TextStyle(color: Colors.teal, fontSize: 13))),
                 ],
               ),
             ),
@@ -52,25 +51,32 @@ class CustomerListPage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 8.0),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                      child: Text(firstHalf[index].accName)),
-                                  Expanded(
-                                      child: Text(firstHalf[index].accMail)),
-                                  const Icon(Icons.arrow_forward_ios_rounded,
-                                      size: 16),
-                                ],
-                              ),
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: Text(
+                                  firstHalf[index].accName,
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 8),
+                                )),
+                                Text(firstHalf[index].accMail,
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 8)),
+                                const Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  size: 10,
+                                  color: Colors.black,
+                                ),
+                              ],
                             ),
                             Divider(thickness: 1, color: Colors.grey.shade300),
                           ],
                         );
                       },
                     ),
+                  ),
+                  SizedBox(
+                    width: 4,
                   ),
                   // Second Column
                   Expanded(
@@ -79,19 +85,21 @@ class CustomerListPage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 8.0),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                      child: Text(secondHalf[index].accName)),
-                                  Expanded(
-                                      child: Text(secondHalf[index].accMail)),
-                                  const Icon(Icons.arrow_forward_ios_rounded,
-                                      size: 16),
-                                ],
-                              ),
+                            Row(
+                              children: [
+                                Expanded(
+                                    child: Text(secondHalf[index].accName,
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 8))),
+                                Text(secondHalf[index].accMail,
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 8)),
+                                const Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  size: 10,
+                                  color: Colors.black,
+                                ),
+                              ],
                             ),
                             Divider(thickness: 1, color: Colors.grey.shade300),
                           ],
@@ -108,5 +116,3 @@ class CustomerListPage extends StatelessWidget {
     );
   }
 }
-
-
