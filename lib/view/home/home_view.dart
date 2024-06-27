@@ -1,5 +1,6 @@
 import 'package:cubtale/app_bloc/navigation/navigation_bloc.dart';
 import 'package:cubtale/app_bloc/search/search_bloc.dart';
+import 'package:cubtale/core/constants/style_constants.dart';
 import 'package:cubtale/core/enum/image_constants.dart';
 import 'package:cubtale/core/enum/search_type.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
@@ -87,7 +88,15 @@ class _HomeViewState extends State<HomeView> {
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(30)),
                             border: Border.all(
-                                color: const Color(0xffd7f1ed), width: 2)),
+                                color: context.appTheme.colors.borderColor,
+                                width: 2),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: const Offset(0, 0),
+                                blurRadius: 6,
+                              ),
+                            ]),
                         child: Column(
                           children: [
                             const SizedBox(height: 30),
@@ -102,10 +111,10 @@ class _HomeViewState extends State<HomeView> {
                                     child: Text(
                                       state.searchType!
                                           .fromString(state.searchType!),
-                                      style: TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black),
+                                      style: f26w700.copyWith(
+                                        color: context
+                                            .appTheme.colors.searchTitleColor,
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -117,6 +126,9 @@ class _HomeViewState extends State<HomeView> {
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black.withOpacity(0.5)),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
                                   ),
                                   Row(
                                     children: [
@@ -169,32 +181,53 @@ class _HomeViewState extends State<HomeView> {
                                                           searchText: value);
                                                 },
                                                 controller: controller,
-                                                decoration:
-                                                    const InputDecoration(
+                                                decoration: InputDecoration(
                                                   filled: true,
-                                                  fillColor: Color(0xffb8e6db),
+                                                  fillColor: context.appTheme
+                                                      .colors.textFieldColor
+                                                      .withOpacity(0.4),
                                                   border: OutlineInputBorder(
                                                       borderSide: BorderSide(
-                                                        color:
-                                                            Color(0xffb8e6db),
+                                                        color: context
+                                                            .appTheme
+                                                            .colors
+                                                            .textFieldColor
+                                                            .withOpacity(0.4),
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.all(
                                                               Radius.circular(
-                                                                  15))),
+                                                                  6))),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: context.appTheme
+                                                          .colors.textFieldColor
+                                                          .withOpacity(0.4),
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10)),
+                                                  ),
                                                   enabledBorder:
                                                       OutlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
-                                                            color: Color(
-                                                                0xffb8e6db),
+                                                            color: context
+                                                                .appTheme
+                                                                .colors
+                                                                .textFieldColor
+                                                                .withOpacity(
+                                                                    0.4),
                                                           ),
                                                           borderRadius:
                                                               BorderRadius.all(
                                                                   Radius
                                                                       .circular(
-                                                                          15))),
+                                                                          10))),
                                                 ),
+                                                textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   color: Colors.black
                                                       .withOpacity(0.5),
@@ -216,16 +249,15 @@ class _HomeViewState extends State<HomeView> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                               color: context.appTheme.colors
-                                                  .backgroundColor,
+                                                  .textFieldColor,
                                               borderRadius:
                                                   const BorderRadius.all(
-                                                      Radius.circular(15))),
+                                                      Radius.circular(10))),
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
-                                                horizontal: 15, vertical: 12),
+                                                horizontal: 25, vertical: 10),
                                             child: Text("Search",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
+                                                style: f18w700.copyWith(
                                                     color: Colors.black
                                                         .withOpacity(0.5))),
                                           ),

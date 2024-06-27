@@ -1,3 +1,4 @@
+import 'package:cubtale/core/constants/style_constants.dart';
 import 'package:cubtale/core/enum/image_constants.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
 import 'package:flutter/material.dart';
@@ -20,15 +21,15 @@ class _ErrorViewState extends State<ErrorView>
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 300,
-        height: 300,
+        width: context.width * 0.16,
+        height: context.height * 0.50,
         child: Card(
-          color: context.appTheme.colors.backgroundColor,
+          color: context.appTheme.colors.white,
           elevation: 15,
           child: Column(
             children: [
               const SizedBox(
-                height: 10,
+                height: 40,
               ),
               SizedBox(
                 width: 90,
@@ -36,33 +37,31 @@ class _ErrorViewState extends State<ErrorView>
                 child: IconConstants.error.toImage,
               ),
               const SizedBox(
-                height: 10,
+                height: 30,
               ),
-              Text("Oops",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: context.appTheme.colors.textColor)),
-              const SizedBox(
-                height: 5,
+              Text(
+                "Ooops",
+                style:
+                    f24w700.copyWith(color: context.appTheme.colors.errorText),
               ),
-              Text("Something",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: context.appTheme.colors.textColor)),
               const SizedBox(
                 height: 5,
               ),
               Text(
-                "Went Wrong !",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: context.appTheme.colors.textColor),
+                "Something",
+                style:
+                    f24w700.copyWith(color: context.appTheme.colors.errorText),
               ),
               const SizedBox(
-                height: 30,
+                height: 5,
+              ),
+              Text(
+                "went wrong !",
+                style:
+                    f24w700.copyWith(color: context.appTheme.colors.errorText),
+              ),
+              SizedBox(
+                height: context.height * 0.05,
               ),
               ElevatedButton(
                   onPressed: () {
@@ -72,21 +71,22 @@ class _ErrorViewState extends State<ErrorView>
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.white),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(15),
-                                bottomRight: Radius.circular(15),
-                                bottomLeft: Radius.circular(15),
+                          const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(7),
+                                bottomRight: Radius.circular(20),
+                                bottomLeft: Radius.circular(20),
                               ),
                               side: BorderSide(
-                                  color: Colors.redAccent.withOpacity(0.5),
+                                  color: Color.fromARGB(255, 217, 100, 98),
                                   width: 3)))),
-                  child: Text(
-                    "Try Again",
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black.withOpacity(0.6)),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text("Try Again",
+                        style: f18w600.copyWith(
+                          color: const Color.fromARGB(255, 217, 100, 98),
+                        )),
                   ))
             ],
           ),

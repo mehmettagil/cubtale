@@ -17,132 +17,130 @@ class CubTaleHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(80);
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          color: Colors.white,
-          child: AppBar(
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(30),
-            )),
-            automaticallyImplyLeading: false,
-            toolbarHeight: 80,
-            backgroundColor: context.appTheme.colors.backgroundColor,
-            elevation: 0,
-            title: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    context
-                        .read<NavigationBloc>()
-                        .add(const NavigationClearEvent());
-                  },
-                  child: Row(
-                    children: [
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      SizedBox(
-                        height: 60,
-                        width: 60,
-                        child: IconConstants.appIcon.toImage,
-                      ),
-                      const SizedBox(
-                        width: 14,
-                      ),
-                      SizedBox(
-                        height: 70,
-                        width: 150,
-                        child: IconConstants.watermark.toImage,
-                      ),
-                    ],
+    return Container(
+      color: Colors.white,
+      child: AppBar(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(30),
+        )),
+        automaticallyImplyLeading: false,
+        toolbarHeight: 80,
+        backgroundColor: context.appTheme.colors.appBarColor,
+        elevation: 0,
+        title: Row(
+          children: [
+            GestureDetector(
+              onTap: () {
+                context
+                    .read<NavigationBloc>()
+                    .add(const NavigationClearEvent());
+              },
+              child: Row(
+                children: [
+                  const SizedBox(
+                    width: 6,
                   ),
-                ),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    context.read<NavigationBloc>().addNavigationSelectedEvent(
-                        searchType: SearchType.EMAIL);
-                    context.read<SearchBloc>().addSearchInitialEvent();
-                  },
-                  child: Text("Search by Mail",
-                      style: TextStyle(
-                          color: context.appTheme.colors.textColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold)),
-                ),
-                _divider(),
-                GestureDetector(
-                  onTap: () {
-                    context
-                        .read<NavigationBloc>()
-                        .addNavigationSelectedEvent(searchType: SearchType.ID);
-                    context.read<SearchBloc>().addSearchInitialEvent();
-                  },
-                  child: Text("Search by ID",
-                      style: TextStyle(
-                          color: context.appTheme.colors.textColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold)),
-                ),
-                _divider(),
-                GestureDetector(
-                  onTap: () {
-                    context.read<NavigationBloc>().addNavigationSelectedEvent(
-                        searchType: SearchType.DATE);
-                    context.read<SearchBloc>().addSearchInitialEvent();
-                  },
-                  child: Text("Search by Date",
-                      style: TextStyle(
-                          color: context.appTheme.colors.textColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold)),
-                ),
-                const Spacer(),
-              ],
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: GestureDetector(
-                    onTap: () {
-                      PopupMenuButton(
-                        itemBuilder: (BuildContext context) {
-                          return [
-                            const PopupMenuItem(
-                              child: Text(StringConstants.darkMode),
-                              value: 1,
-                            ),
-                            const PopupMenuItem(
-                              child: Text(StringConstants.darkMode),
-                              value: 2,
-                            ),
-                          ];
-                        },
-                      );
-                    },
-                    child: const MenuBurger(
-                      isOpen: false,
-                    )),
+                  SizedBox(
+                    height: 60,
+                    width: 60,
+                    child: IconConstants.appIcon.toImage,
+                  ),
+                  const SizedBox(
+                    width: 14,
+                  ),
+                  SizedBox(
+                    height: 70,
+                    width: 150,
+                    child: IconConstants.watermark.toImage,
+                  ),
+                ],
               ),
-              const SizedBox(
-                width: 40,
-              )
-            ],
-          ),
+            ),
+            const Spacer(),
+            GestureDetector(
+              onTap: () {
+                context
+                    .read<NavigationBloc>()
+                    .addNavigationSelectedEvent(searchType: SearchType.EMAIL);
+                context.read<SearchBloc>().addSearchInitialEvent();
+              },
+              child: Text("Search by Mail",
+                  style: TextStyle(
+                      color: context.appTheme.colors.textColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold)),
+            ),
+            _divider(context),
+            GestureDetector(
+              onTap: () {
+                context
+                    .read<NavigationBloc>()
+                    .addNavigationSelectedEvent(searchType: SearchType.ID);
+                context.read<SearchBloc>().addSearchInitialEvent();
+              },
+              child: Text("Search by ID",
+                  style: TextStyle(
+                      color: context.appTheme.colors.textColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold)),
+            ),
+            _divider(context),
+            GestureDetector(
+              onTap: () {
+                context
+                    .read<NavigationBloc>()
+                    .addNavigationSelectedEvent(searchType: SearchType.DATE);
+                context.read<SearchBloc>().addSearchInitialEvent();
+              },
+              child: Text("Search by Date",
+                  style: TextStyle(
+                      color: context.appTheme.colors.textColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold)),
+            ),
+            const Spacer(),
+          ],
         ),
-      ],
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: GestureDetector(
+                onTap: () {
+                  PopupMenuButton(
+                    itemBuilder: (BuildContext context) {
+                      return [
+                        const PopupMenuItem(
+                          child: Text(StringConstants.darkMode),
+                          value: 1,
+                        ),
+                        const PopupMenuItem(
+                          child: Text(StringConstants.darkMode),
+                          value: 2,
+                        ),
+                      ];
+                    },
+                  );
+                },
+                child: const MenuBurger(
+                  isOpen: false,
+                )),
+          ),
+          const SizedBox(
+            width: 40,
+          )
+        ],
+      ),
     );
   }
 
-  Padding _divider() {
+  Padding _divider(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 14),
       child: Container(
         height: 40,
         width: 3,
-        color: Colors.red,
+        color: context.appTheme.colors.dividerColor,
       ),
     );
   }
@@ -167,7 +165,7 @@ class MenuBurger extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: context.appTheme.colors.dividerColor,
                       borderRadius: BorderRadius.circular(10)),
                   height: 40,
                   width: 4,
@@ -184,7 +182,8 @@ class MenuBurger extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.red, borderRadius: BorderRadius.circular(10)),
+                    color: context.appTheme.colors.dividerColor,
+                    borderRadius: BorderRadius.circular(10)),
                 height: 4,
                 width: 40,
               ),

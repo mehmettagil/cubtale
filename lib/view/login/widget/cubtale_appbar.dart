@@ -1,5 +1,6 @@
 import 'package:cubtale/app_bloc/core/color_theme_bloc/color_theme_bloc.dart';
 import 'package:cubtale/core/constants/string_constants.dart';
+import 'package:cubtale/core/constants/style_constants.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:cubtale/core/enum/image_constants.dart';
@@ -57,23 +58,23 @@ class CubTaleAppBar extends StatelessWidget implements PreferredSizeWidget {
                   decoration: const BoxDecoration(
                       color: Color(0xffd7f1ed),
                       borderRadius: BorderRadius.all(Radius.circular(15))),
-                  height: 50,
-                  width: 140,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(
-                          width: 40,
-                          height: 40,
-                          child: IconConstants.darkMode.toImage),
-                      Text(
-                        StringConstants.darkMode,
-                        style: TextStyle(
-                          color: context.appTheme.colors.textColor,
-                          fontSize: 18,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: IconConstants.darkMode.toImage),
+                        const SizedBox(
+                          width: 5,
                         ),
-                      ),
-                    ],
+                        Text(StringConstants.darkMode,
+                            style: f16w200.copyWith(
+                                color: context.appTheme.colors.textColor)),
+                      ],
+                    ),
                   ),
                 ),
               );

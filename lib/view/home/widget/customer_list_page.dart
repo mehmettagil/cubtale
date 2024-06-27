@@ -1,3 +1,5 @@
+import 'package:cubtale/core/constants/style_constants.dart';
+import 'package:cubtale/core/init/extension/context_extension.dart';
 import 'package:cubtale/core/model/customer/customer_model.dart';
 import 'package:flutter/material.dart';
 
@@ -15,28 +17,36 @@ class CustomerListPage extends StatelessWidget {
     final List<CustomerModel> firstHalf = customers.sublist(0, halfLength);
     final List<CustomerModel> secondHalf = customers.sublist(halfLength);
     return Container(
-      height: 250,
+      height: context.height * 0.3,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             // Header
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 2.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 2.0),
               child: Row(
                 children: [
                   Expanded(
                       child: Text('Name',
-                          style: TextStyle(color: Colors.teal, fontSize: 13))),
+                          style: f10w400.copyWith(
+                            color: context.appTheme.colors.dividerColor,
+                          ))),
                   Expanded(
                       child: Text('Email',
-                          style: TextStyle(color: Colors.teal, fontSize: 13))),
+                          style: f10w400.copyWith(
+                            color: context.appTheme.colors.dividerColor,
+                          ))),
                   Expanded(
                       child: Text('Name',
-                          style: TextStyle(color: Colors.teal, fontSize: 13))),
+                          style: f10w400.copyWith(
+                            color: context.appTheme.colors.dividerColor,
+                          ))),
                   Expanded(
                       child: Text('Email',
-                          style: TextStyle(color: Colors.teal, fontSize: 13))),
+                          style: f10w400.copyWith(
+                            color: context.appTheme.colors.dividerColor,
+                          ))),
                 ],
               ),
             ),
@@ -56,12 +66,15 @@ class CustomerListPage extends StatelessWidget {
                                 Expanded(
                                     child: Text(
                                   firstHalf[index].accName,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.black, fontSize: 8),
                                 )),
                                 Text(firstHalf[index].accMail,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black, fontSize: 8)),
+                                const SizedBox(
+                                  width: 5,
+                                ),
                                 const Icon(
                                   Icons.arrow_forward_ios_rounded,
                                   size: 10,
@@ -75,7 +88,7 @@ class CustomerListPage extends StatelessWidget {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 4,
                   ),
                   // Second Column
@@ -89,11 +102,14 @@ class CustomerListPage extends StatelessWidget {
                               children: [
                                 Expanded(
                                     child: Text(secondHalf[index].accName,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.black, fontSize: 8))),
                                 Text(secondHalf[index].accMail,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black, fontSize: 8)),
+                                const SizedBox(
+                                  width: 5,
+                                ),
                                 const Icon(
                                   Icons.arrow_forward_ios_rounded,
                                   size: 10,

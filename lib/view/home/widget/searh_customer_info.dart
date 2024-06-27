@@ -1,6 +1,8 @@
 import 'package:cubtale/app_bloc/search/search_bloc.dart';
+import 'package:cubtale/core/constants/style_constants.dart';
 import 'package:cubtale/core/enum/image_constants.dart';
 import 'package:cubtale/core/enum/search_type.dart';
+import 'package:cubtale/core/init/extension/context_extension.dart';
 import 'package:cubtale/view/home/widget/customer_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,34 +44,40 @@ class SearchCustomerInfo extends StatelessWidget {
                           Expanded(
                             child: Row(
                               children: [
-                                const Text(
-                                  "Name",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                      color: Colors.black),
+                                Text(
+                                  "Name:",
+                                  style: f18w400.copyWith(
+                                      color: context
+                                          .appTheme.colors.customerTextColor),
                                 ),
                                 SizedBox(
                                   width: 5,
                                 ),
-                                Text(state.customerModel![0].accName),
+                                Text(
+                                  state.customerModel![0].accName,
+                                  style: f18w400.copyWith(
+                                      color:
+                                          context.appTheme.colors.dividerColor),
+                                ),
                               ],
                             ),
                           ),
                           Expanded(
                             child: Row(
                               children: [
-                                const Text(
-                                  "Mail",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                      color: Colors.black),
+                                Text(
+                                  "Mail:",
+                                  style: f18w400.copyWith(
+                                      color: context
+                                          .appTheme.colors.customerTextColor),
                                 ),
                                 SizedBox(
                                   width: 5,
                                 ),
-                                Text(state.customerModel![0].accMail),
+                                Text(state.customerModel![0].accMail,
+                                    style: f18w400.copyWith(
+                                        color: context
+                                            .appTheme.colors.dividerColor)),
                               ],
                             ),
                           ),
@@ -81,30 +89,34 @@ class SearchCustomerInfo extends StatelessWidget {
                           Expanded(
                             child: Row(
                               children: [
-                                const Text(
-                                  "Surname",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                      color: Colors.black),
+                                Text(
+                                  "Surname:",
+                                  style: f18w400.copyWith(
+                                      color: context
+                                          .appTheme.colors.customerTextColor),
                                 ),
                                 const SizedBox(width: 5),
-                                Text(state.customerModel![0].accSurname),
+                                Text(state.customerModel![0].accSurname,
+                                    style: f18w400.copyWith(
+                                        color: context
+                                            .appTheme.colors.dividerColor)),
                               ],
                             ),
                           ),
                           Expanded(
                             child: Row(
                               children: [
-                                const Text(
-                                  "Creation \nDate",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                      color: Colors.black),
+                                Text(
+                                  "Creation \nDate:",
+                                  style: f18w400.copyWith(
+                                      color: context
+                                          .appTheme.colors.customerTextColor),
                                 ),
                                 const SizedBox(width: 5),
-                                Text(state.customerModel![0].accCreationDate),
+                                Text(state.customerModel![0].accCreationDate,
+                                    style: f18w400.copyWith(
+                                        color: context
+                                            .appTheme.colors.dividerColor)),
                               ],
                             ),
                           ),
@@ -116,31 +128,36 @@ class SearchCustomerInfo extends StatelessWidget {
                           Expanded(
                             child: Row(
                               children: [
-                                const Text(
-                                  "Verified",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                      color: Colors.black),
+                                Text(
+                                  "Verified:",
+                                  style: f18w400.copyWith(
+                                      color: context
+                                          .appTheme.colors.customerTextColor),
                                 ),
                                 const SizedBox(width: 5),
-                                Text(state.customerModel![0].accVerified
-                                    .toString()),
+                                Text(
+                                    state.customerModel![0].accVerified
+                                        .toString(),
+                                    style: f18w400.copyWith(
+                                        color: context
+                                            .appTheme.colors.dividerColor)),
                               ],
                             ),
                           ),
                           Expanded(
                             child: Row(
                               children: [
-                                const Text(
-                                  "Account ID",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                      color: Colors.black),
+                                Text(
+                                  "Account ID:",
+                                  style: f18w400.copyWith(
+                                      color: context
+                                          .appTheme.colors.customerTextColor),
                                 ),
                                 const SizedBox(width: 5),
-                                Text(state.customerModel![0].accId),
+                                Text(state.customerModel![0].accId,
+                                    style: f18w400.copyWith(
+                                        color: context
+                                            .appTheme.colors.dividerColor)),
                               ],
                             ),
                           ),

@@ -25,6 +25,10 @@ class _ThemeExt {
   }
 
   ColorThemeState get _colorThemeState {
-    return context.watch<ColorThemeBloc>().state;
+    if (kDebugMode && !(context.owner?.debugBuilding ?? false)) {
+      return context.read<ColorThemeBloc>().state;
+    } else {
+      return context.watch<ColorThemeBloc>().state;
+    }
   }
 }

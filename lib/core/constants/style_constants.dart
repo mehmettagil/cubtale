@@ -103,7 +103,11 @@ const TextStyle f15w700 = TextStyle(
   fontWeight: FontWeight.w700,
   color: Colors.white,
 );
-
+const TextStyle f16w200 = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.w200,
+  color: Colors.white,
+);
 const TextStyle f16w400 = TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w400,
