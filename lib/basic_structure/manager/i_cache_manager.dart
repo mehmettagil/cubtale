@@ -5,6 +5,7 @@ abstract class ICacheManager {
 
   int? readInt({required CacheKey key});
   double? readDouble({required CacheKey key});
+  Map<String, dynamic>? readMap({required CacheKey key});
 
   Future<void> writeString({required CacheKey key, required String value});
 
@@ -12,6 +13,7 @@ abstract class ICacheManager {
 
   Future<void> writeInt({required CacheKey key, required int value});
   Future<void> writeDouble({required CacheKey key, required double value});
+  Future<void> writeMap({required CacheKey key, required Map<String, dynamic> value});
 
   Future<void> clear();
   Future<void> delete({required CacheKey key});

@@ -20,7 +20,7 @@ class DummyCard extends StatelessWidget {
     if (isUsers) {
       return Container(
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: context.appTheme.colors.errorBackground,
             borderRadius: const BorderRadius.all(Radius.circular(15)),
             border: Border.all(
                 color: context.appTheme.colors.borderColor, width: 2),
@@ -28,7 +28,7 @@ class DummyCard extends StatelessWidget {
               BoxShadow(
                 color: Colors.grey,
                 offset: Offset(0, 0),
-                blurRadius: 6,
+                blurRadius: 2,
               ),
             ]),
         child: Column(
@@ -51,10 +51,16 @@ class DummyCard extends StatelessWidget {
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
-                        colors: [
-                          Colors.white,
-                          const Color(0xffb8e6db).withOpacity(0.6),
-                        ],
+                        colors: context.appTheme.isDarkTheme
+                            ? [
+                                Color.fromARGB(255, 156, 154, 149)
+                                    .withOpacity(0.7),
+                                Colors.white,
+                              ]
+                            : [
+                                const Color(0xffb8e6db).withOpacity(0.6),
+                                Colors.white,
+                              ],
                       )),
                   child: BlocBuilder<SearchBloc, SearchState>(
                     buildWhen: (previous, current) {
@@ -77,7 +83,7 @@ class DummyCard extends StatelessWidget {
     } else {
       return Container(
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: context.appTheme.colors.errorBackground,
             borderRadius: const BorderRadius.all(Radius.circular(15)),
             border: Border.all(
                 color: context.appTheme.colors.borderColor, width: 2),
@@ -85,7 +91,7 @@ class DummyCard extends StatelessWidget {
               BoxShadow(
                 color: Colors.grey,
                 offset: Offset(0, 0),
-                blurRadius: 6,
+                blurRadius: 2,
               ),
             ]),
         child: Column(

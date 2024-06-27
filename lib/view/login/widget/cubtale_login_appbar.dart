@@ -6,21 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:cubtale/core/enum/image_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CubTaleAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CubTaleAppBar({super.key});
+class CubTaleLoginAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
+  const CubTaleLoginAppBar({super.key});
   @override
   Size get preferredSize => const Size.fromHeight(80);
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: context.appTheme.colors.backgroundColor,
       child: AppBar(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
           bottomRight: Radius.circular(30),
         )),
         toolbarHeight: 80,
-        backgroundColor: context.appTheme.colors.backgroundColor,
+        backgroundColor: context.appTheme.colors.appBarColor,
         elevation: 0,
         title: Row(
           children: [
@@ -55,9 +56,10 @@ class CubTaleAppBar extends StatelessWidget implements PreferredSizeWidget {
                   }
                 },
                 child: Container(
-                  decoration: const BoxDecoration(
-                      color: Color(0xffd7f1ed),
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                  decoration: BoxDecoration(
+                      color: context.appTheme.colors.modeButtonColor,
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(15))),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -71,8 +73,7 @@ class CubTaleAppBar extends StatelessWidget implements PreferredSizeWidget {
                           width: 5,
                         ),
                         Text(StringConstants.darkMode,
-                            style: f16w200.copyWith(
-                                color: context.appTheme.colors.textColor)),
+                            style: f16w200.copyWith(color: Colors.black)),
                       ],
                     ),
                   ),

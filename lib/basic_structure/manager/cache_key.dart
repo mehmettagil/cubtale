@@ -2,7 +2,13 @@
 
 enum CacheKey {
   // Color theme
-  COLOR_THEME('theme_color');
+  COLOR_THEME('theme_color'),
+
+  // user data
+  USER_DATA('user_data'),
+
+  // last login
+  LAST_LOGIN('last_login');
 
   const CacheKey(this.value);
   final String value;

@@ -8,9 +8,9 @@ class DummyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(15)),
+      decoration: BoxDecoration(
+        color: context.appTheme.colors.backgroundColor,
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(15)),
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.width * 0.08),

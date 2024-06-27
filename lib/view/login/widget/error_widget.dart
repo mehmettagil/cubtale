@@ -21,11 +21,13 @@ class _ErrorViewState extends State<ErrorView>
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: context.width * 0.16,
+        width: context.width * 0.18,
         height: context.height * 0.50,
-        child: Card(
-          color: context.appTheme.colors.white,
-          elevation: 15,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: context.appTheme.colors.errorBackground,
+          ),
           child: Column(
             children: [
               const SizedBox(
@@ -68,8 +70,8 @@ class _ErrorViewState extends State<ErrorView>
                     Navigator.of(context).pop();
                   },
                   style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          context.appTheme.colors.errorBackground),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
@@ -82,9 +84,9 @@ class _ErrorViewState extends State<ErrorView>
                                   color: Color.fromARGB(255, 217, 100, 98),
                                   width: 3)))),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: const EdgeInsets.symmetric(vertical: 11),
                     child: Text("Try Again",
-                        style: f18w600.copyWith(
+                        style: f16w600.copyWith(
                           color: const Color.fromARGB(255, 217, 100, 98),
                         )),
                   ))

@@ -24,28 +24,36 @@ class CustomerListPage extends StatelessWidget {
           children: [
             // Header
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 2.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 0.0, vertical: 2.0),
               child: Row(
                 children: [
                   Expanded(
                       child: Text('Name',
                           style: f10w400.copyWith(
-                            color: context.appTheme.colors.dividerColor,
+                            color:
+                                context.appTheme.colors.customerListTitleColor,
                           ))),
                   Expanded(
                       child: Text('Email',
                           style: f10w400.copyWith(
-                            color: context.appTheme.colors.dividerColor,
+                            color:
+                                context.appTheme.colors.customerListTitleColor,
                           ))),
+                  SizedBox(
+                    width: 10,
+                  ),
                   Expanded(
                       child: Text('Name',
                           style: f10w400.copyWith(
-                            color: context.appTheme.colors.dividerColor,
+                            color:
+                                context.appTheme.colors.customerListTitleColor,
                           ))),
                   Expanded(
                       child: Text('Email',
                           style: f10w400.copyWith(
-                            color: context.appTheme.colors.dividerColor,
+                            color:
+                                context.appTheme.colors.customerListTitleColor,
                           ))),
                 ],
               ),
@@ -89,7 +97,7 @@ class CustomerListPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    width: 4,
+                    width: 10,
                   ),
                   // Second Column
                   Expanded(

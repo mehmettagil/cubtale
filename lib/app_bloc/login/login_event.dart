@@ -30,6 +30,9 @@ class LoginPasswordChangeEvent extends LoginEvent {
 class LoginClearEvent extends LoginEvent {
   const LoginClearEvent();
 }
+class LoginLogoutEvent extends LoginEvent {
+  const LoginLogoutEvent();
+}
 
 class LoginCompleteEvent extends LoginEvent {
   const LoginCompleteEvent();

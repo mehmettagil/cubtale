@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cubtale/basic_structure/manager/cache_key.dart';
 import 'package:cubtale/basic_structure/manager/i_cache_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,6 +39,15 @@ class SharedPreferencesCacheManager implements ICacheManager {
   }
 
   @override
+  Future<void> writeMap({
+    required CacheKey key,
+    required Map<String, dynamic> value,
+  }) {
+    final encodedMap = jsonEncode(value);
+    return _sharedPref.setString(key.value, encodedMap);
+  }
+
+  @override
   double? readDouble({required CacheKey key}) {
     return _sharedPref.getDouble(key.value);
   }
@@ -49,5 +60,14 @@ class SharedPreferencesCacheManager implements ICacheManager {
   @override
   String? readString({required CacheKey key}) {
     return _sharedPref.getString(key.value);
+  }
+
+  @override
+  Map<String, dynamic>? readMap({required CacheKey key}) {
+    final encodedString = _sharedPref.getString(key.value);
+    if (encodedString != null) {
+      return jsonDecode(encodedString) as Map<String, dynamic>;
+    }
+    return null;
   }
 }

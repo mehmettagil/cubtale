@@ -1,5 +1,6 @@
 import 'package:cubtale/app_bloc/core/color_theme_bloc/color_theme_bloc.dart';
 import 'package:cubtale/app_bloc/login/login_bloc.dart';
+import 'package:cubtale/app_bloc/menu_burger/menu_burger_bloc.dart';
 import 'package:cubtale/app_bloc/navigation/navigation_bloc.dart';
 import 'package:cubtale/app_bloc/search/search_bloc.dart';
 import 'package:cubtale/core/enum/theme_enum.dart';
@@ -28,13 +29,16 @@ class MyApp extends StatelessWidget {
           create: (_) => getIt<ColorThemeBloc>()..addInitialized(),
         ),
         BlocProvider(
-          create: (_) => getIt<LoginBloc>(),
+          create: (_) => getIt<LoginBloc>()..add(const LoginFetchEvent()),
         ),
         BlocProvider(
           create: (_) => getIt<SearchBloc>(),
         ),
         BlocProvider(
           create: (_) => getIt<NavigationBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => getIt<MenuBurgerBloc>(),
         )
       ],
       child: BlocConsumer<ColorThemeBloc, ColorThemeState>(
