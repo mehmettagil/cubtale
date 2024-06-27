@@ -18,6 +18,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
   SearchBloc(
     this._iSearchRepository,
   ) : super(SearchState.initial()) {
+    on<SearchInitialEvent>(
+      _onSearchInitialEvent,
+    );
     on<SearchTextChangeEvent>(
       _onSearchEmailChangeEvent,
     );
@@ -30,6 +33,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
     );
   }
   final ISearchRepository _iSearchRepository;
+
+  addSearchInitialEvent() {
+    add(const SearchInitialEvent());
+  }
+
   addSearchTextChangeEvent({required String searchText}) {
     add(SearchTextChangeEvent(searchText: searchText));
   }
@@ -77,6 +85,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
 
   Future<void> _onSearchClearEvent(
       SearchClearEvent event, Emitter<SearchState> emit) async {
+    emit(state.copyWith(
+      processFailureOrUnitOption: none(),
+      searchText: "",
+    ));
+  }
+
+  Future<void> _onSearchInitialEvent(
+      SearchInitialEvent event, Emitter<SearchState> emit) async {
     emit(state.copyWith(
       processFailureOrUnitOption: none(),
       searchText: "",

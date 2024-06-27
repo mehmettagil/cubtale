@@ -15,7 +15,7 @@ class CustomerListPage extends StatelessWidget {
     final List<CustomerModel> firstHalf = customers.sublist(0, halfLength);
     final List<CustomerModel> secondHalf = customers.sublist(halfLength);
     return Container(
-      height: 200,
+      height: 250,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

@@ -29,14 +29,6 @@ class SearchState extends Equatable {
     );
   }
 
-  bool isValidEmail(String email) {
-    final emailRegex = RegExp(
-        r'^[\w-]+(\.[\w-]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$',
-        caseSensitive: false);
-
-    return emailRegex.hasMatch(email);
-  }
-
   List<CustomerModel>? get customerModel {
     final customerModel = processFailureOrUnitOption.fold(
         () => null, (a) => a.fold((l) => null, (r) => r));

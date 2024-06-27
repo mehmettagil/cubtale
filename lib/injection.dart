@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cubtale/app_bloc/core/color_theme_bloc/color_theme_bloc.dart';
 import 'package:cubtale/app_bloc/login/login_bloc.dart';
+import 'package:cubtale/app_bloc/navigation/navigation_bloc.dart';
 import 'package:cubtale/app_bloc/search/search_bloc.dart';
 import 'package:cubtale/basic_structure/manager/i_cache_manager.dart';
 import 'package:cubtale/basic_structure/manager/shared_preferences_cache_manager.dart';
@@ -52,6 +53,7 @@ Future<bool> _injectBlocs() async {
   getIt.registerFactory(() => SearchBloc(
         getIt<ISearchRepository>(),
       ));
+  getIt.registerFactory(() => NavigationBloc());
 
   return true;
 }

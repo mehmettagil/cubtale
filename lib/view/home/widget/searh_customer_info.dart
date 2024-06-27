@@ -7,9 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchCustomerInfo extends StatelessWidget {
   const SearchCustomerInfo({
-    super.key,
+    Key? key,
     required this.searchType,
-  });
+  }) : super(key: key);
+
   final SearchType searchType;
 
   @override
@@ -26,91 +27,128 @@ class SearchCustomerInfo extends StatelessWidget {
               children: [
                 Center(
                   child: SizedBox(
-                      width: 90,
-                      height: 90,
-                      child: IconConstants.profileLight.toImage),
+                    width: 100,
+                    height: 100,
+                    child: IconConstants.profileDark.toImage,
+                  ),
                 ),
-                const SizedBox(
-                  height: 30,
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: [
+                                const Text(
+                                  "Name",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.black),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(state.customerModel![0].accName),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Row(
+                              children: [
+                                const Text(
+                                  "Mail",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.black),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(state.customerModel![0].accMail),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: [
+                                const Text(
+                                  "Surname",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.black),
+                                ),
+                                const SizedBox(width: 5),
+                                Text(state.customerModel![0].accSurname),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Row(
+                              children: [
+                                const Text(
+                                  "Creation \nDate",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.black),
+                                ),
+                                const SizedBox(width: 5),
+                                Text(state.customerModel![0].accCreationDate),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: [
+                                const Text(
+                                  "Verified",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.black),
+                                ),
+                                const SizedBox(width: 5),
+                                Text(state.customerModel![0].accVerified
+                                    .toString()),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Row(
+                              children: [
+                                const Text(
+                                  "Account ID",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.black),
+                                ),
+                                const SizedBox(width: 5),
+                                Text(state.customerModel![0].accId),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                Row(
-                  children: [
-                    Row(
-                      children: [
-                        const Text("Name",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: Colors.black)),
-                        const SizedBox(width: 10),
-                        Text(state.customerModel![0].accName),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Text("Mail",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: Colors.black)),
-                        const SizedBox(width: 10),
-                        Text(state.customerModel![0].accMail),
-                      ],
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Row(
-                      children: [
-                        const Text("Surname",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: Colors.black)),
-                        const SizedBox(width: 10),
-                        Text(state.customerModel![0].accSurname),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Text("Creation Date",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: Colors.black)),
-                        const SizedBox(width: 10),
-                        Text(state.customerModel![0].accCreationDate),
-                      ],
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Row(
-                      children: [
-                        const Text("Verified",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: Colors.black)),
-                        const SizedBox(width: 10),
-                        Text(state.customerModel![0].accVerified.toString()),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Text("Account id",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: Colors.black)),
-                        const SizedBox(width: 10),
-                        Text(state.customerModel![0].accId),
-                      ],
-                    )
-                  ],
-                )
               ],
             );
           }

@@ -1,7 +1,11 @@
 import 'package:cubtale/app_bloc/core/color_theme_bloc/color_theme_bloc.dart';
+import 'package:cubtale/app_bloc/navigation/navigation_bloc.dart';
+import 'package:cubtale/app_bloc/search/search_bloc.dart';
 import 'package:cubtale/core/constants/string_constants.dart';
+import 'package:cubtale/core/enum/search_type.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
 import 'package:cubtale/view/home/home_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cubtale/core/enum/image_constants.dart';
 import 'package:flutter/widgets.dart';
@@ -28,41 +32,74 @@ class CubTaleHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             elevation: 0,
             title: Row(
               children: [
-                const SizedBox(
-                  width: 6,
+                GestureDetector(
+                  onTap: () {
+                    context
+                        .read<NavigationBloc>()
+                        .add(const NavigationClearEvent());
+                  },
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      SizedBox(
+                        height: 60,
+                        width: 60,
+                        child: IconConstants.appIcon.toImage,
+                      ),
+                      const SizedBox(
+                        width: 14,
+                      ),
+                      SizedBox(
+                        height: 70,
+                        width: 150,
+                        child: IconConstants.watermark.toImage,
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  height: 60,
-                  width: 60,
-                  child: IconConstants.appIcon.toImage,
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    context.read<NavigationBloc>().addNavigationSelectedEvent(
+                        searchType: SearchType.EMAIL);
+                    context.read<SearchBloc>().addSearchInitialEvent();
+                  },
+                  child: Text("Search by Mail",
+                      style: TextStyle(
+                          color: context.appTheme.colors.textColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
                 ),
-                const SizedBox(
-                  width: 14,
-                ),
-                SizedBox(
-                  height: 70,
-                  width: 150,
-                  child: IconConstants.watermark.toImage,
-                ),
-                Spacer(),
-                Text("Search by Mail",
-                    style: TextStyle(
-                        color: context.appTheme.colors.textColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold)),
                 _divider(),
-                Text("Search by ID",
-                    style: TextStyle(
-                        color: context.appTheme.colors.textColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold)),
+                GestureDetector(
+                  onTap: () {
+                    context
+                        .read<NavigationBloc>()
+                        .addNavigationSelectedEvent(searchType: SearchType.ID);
+                    context.read<SearchBloc>().addSearchInitialEvent();
+                  },
+                  child: Text("Search by ID",
+                      style: TextStyle(
+                          color: context.appTheme.colors.textColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
+                ),
                 _divider(),
-                Text("Search by Date",
-                    style: TextStyle(
-                        color: context.appTheme.colors.textColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold)),
-                Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    context.read<NavigationBloc>().addNavigationSelectedEvent(
+                        searchType: SearchType.DATE);
+                    context.read<SearchBloc>().addSearchInitialEvent();
+                  },
+                  child: Text("Search by Date",
+                      style: TextStyle(
+                          color: context.appTheme.colors.textColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
+                ),
+                const Spacer(),
               ],
             ),
             actions: [
@@ -73,11 +110,11 @@ class CubTaleHomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                       PopupMenuButton(
                         itemBuilder: (BuildContext context) {
                           return [
-                            PopupMenuItem(
+                            const PopupMenuItem(
                               child: Text(StringConstants.darkMode),
                               value: 1,
                             ),
-                            PopupMenuItem(
+                            const PopupMenuItem(
                               child: Text(StringConstants.darkMode),
                               value: 2,
                             ),
