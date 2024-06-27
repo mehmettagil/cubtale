@@ -68,11 +68,16 @@ class CubTaleLoginAppBar extends StatelessWidget
                         SizedBox(
                             width: 40,
                             height: 40,
-                            child: IconConstants.darkMode.toImage),
+                            child: context.appTheme.isDarkTheme
+                                ? IconConstants.lightMode.toImage
+                                : IconConstants.darkMode.toImage),
                         const SizedBox(
                           width: 5,
                         ),
-                        Text(StringConstants.darkMode,
+                        Text(
+                            context.appTheme.isDarkTheme
+                                ? StringConstants.lightMode
+                                : StringConstants.darkMode,
                             style: f16w200.copyWith(color: Colors.black)),
                       ],
                     ),

@@ -109,8 +109,8 @@ class _HomeViewState extends State<HomeView> {
                                               state.searchType!),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.black
-                                                  .withOpacity(0.5)),
+                                              color: context
+                                                  .appTheme.colors.basic),
                                         ),
                                         const SizedBox(
                                           height: 10,
@@ -238,8 +238,8 @@ class _HomeViewState extends State<HomeView> {
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
-                                                        color: Colors.black
-                                                            .withOpacity(0.5),
+                                                        color: context.appTheme
+                                                            .colors.basic,
                                                       ),
                                                     );
                                                   },
@@ -271,9 +271,10 @@ class _HomeViewState extends State<HomeView> {
                                                       vertical: 10),
                                                   child: Text("Search",
                                                       style: f18w700.copyWith(
-                                                          color: Colors.black
-                                                              .withOpacity(
-                                                                  0.5))),
+                                                          color: context
+                                                              .appTheme
+                                                              .colors
+                                                              .basic)),
                                                 ),
                                               ),
                                             )

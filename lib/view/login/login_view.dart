@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         },
                                         decoration: _inputDecoration(context),
                                         style: TextStyle(
-                                          color: Colors.black.withOpacity(0.5),
+                                          color: context.appTheme.colors.basic,
                                         ),
                                       );
                                     },
@@ -146,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         obscureText: true,
                                         decoration: _inputDecoration(context),
                                         style: TextStyle(
-                                          color: Colors.black.withOpacity(0.5),
+                                          color: context.appTheme.colors.basic,
                                         ),
                                       );
                                     },

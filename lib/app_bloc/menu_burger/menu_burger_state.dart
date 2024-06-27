@@ -7,7 +7,10 @@ class MenuBurgerState extends Equatable {
   });
 
   factory MenuBurgerState.initial() {
-    return MenuBurgerState(menuBurgerState: false, userModel: none());
+    return MenuBurgerState(
+      menuBurgerState: false,
+      userModel: none(),
+    );
   }
 
   final bool menuBurgerState;
@@ -22,6 +25,7 @@ class MenuBurgerState extends Equatable {
       userModel: userModel ?? this.userModel,
     );
   }
+
   UserModel? get userModelValue => userModel.fold(() => null, (a) => a);
 
   @override

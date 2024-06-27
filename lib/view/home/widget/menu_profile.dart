@@ -1,4 +1,5 @@
 import 'package:cubtale/app_bloc/login/login_bloc.dart';
+import 'package:cubtale/core/constants/style_constants.dart';
 import 'package:cubtale/core/enum/image_constants.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
 import 'package:cubtale/core/model/user/user_model.dart';
@@ -21,7 +22,7 @@ class MenuProfile extends StatelessWidget {
         //SizedBox(width: width/1.4,),
         SizedBox(
           child: Container(
-            width: context.width * 0.15,
+            width: context.width * 0.18,
             decoration: BoxDecoration(
                 color: context.appTheme.colors.appBarColor,
                 borderRadius: const BorderRadius.only(
@@ -54,6 +55,8 @@ class MenuProfile extends StatelessWidget {
                       ),
                       Text(
                         userModel.accName,
+                        style: f16w500.copyWith(
+                            color: context.appTheme.colors.dividerColor),
                       ),
                     ],
                   ),
@@ -68,7 +71,11 @@ class MenuProfile extends StatelessWidget {
                       const SizedBox(
                         width: 30,
                       ),
-                      Text(userModel.accRole),
+                      Text(
+                        userModel.accRole,
+                        style: f16w500.copyWith(
+                            color: context.appTheme.colors.dividerColor),
+                      ),
                     ],
                   ),
                   const SizedBox(
@@ -88,7 +95,7 @@ class MenuProfile extends StatelessWidget {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          Colors.white),
+                                          Colors.white.withOpacity(0.7)),
                                   shape: MaterialStateProperty.all<
                                           RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
@@ -102,12 +109,14 @@ class MenuProfile extends StatelessWidget {
                                               color: Colors.redAccent
                                                   .withOpacity(0.5),
                                               width: 3)))),
-                              child: const Text(
-                                "Logout",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.red,
-                                    fontSize: 10),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 6),
+                                child: Text(
+                                  "Logout",
+                                  style: f14w500.copyWith(
+                                      color: Colors.red.withOpacity(0.8)),
+                                ),
                               )),
                         ],
                       );

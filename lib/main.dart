@@ -41,10 +41,7 @@ class MyApp extends StatelessWidget {
           create: (_) => getIt<MenuBurgerBloc>(),
         )
       ],
-      child: BlocConsumer<ColorThemeBloc, ColorThemeState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
+      child: BlocBuilder<ColorThemeBloc, ColorThemeState>(
         builder: (context, state) {
           return MaterialApp(
             title: 'CubTale App',

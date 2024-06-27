@@ -74,12 +74,14 @@ class CustomerListPage extends StatelessWidget {
                                 Expanded(
                                     child: Text(
                                   firstHalf[index].accName,
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 8),
+                                  style: TextStyle(
+                                      color: context.appTheme.colors.basic,
+                                      fontSize: 8),
                                 )),
                                 Text(firstHalf[index].accMail,
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 8)),
+                                    style: TextStyle(
+                                        color: context.appTheme.colors.basic,
+                                        fontSize: 8)),
                                 const SizedBox(
                                   width: 5,
                                 ),
@@ -110,11 +112,14 @@ class CustomerListPage extends StatelessWidget {
                               children: [
                                 Expanded(
                                     child: Text(secondHalf[index].accName,
-                                        style: const TextStyle(
-                                            color: Colors.black, fontSize: 8))),
+                                        style: TextStyle(
+                                            color:
+                                                context.appTheme.colors.basic,
+                                            fontSize: 8))),
                                 Text(secondHalf[index].accMail,
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 8)),
+                                    style: TextStyle(
+                                        color: context.appTheme.colors.basic,
+                                        fontSize: 8)),
                                 const SizedBox(
                                   width: 5,
                                 ),
