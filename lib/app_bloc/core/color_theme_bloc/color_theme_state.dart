@@ -7,7 +7,7 @@ class ColorThemeState extends Equatable {
 
   factory ColorThemeState.initial() {
     return const ColorThemeState(
-      theme: ThemeEnum.system,
+      theme: ThemeEnum.light,
     );
   }
 

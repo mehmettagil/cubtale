@@ -1,5 +1,6 @@
 import 'dart:async';
 
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:cubtale/basic_structure/manager/cache_key.dart';
 import 'package:cubtale/basic_structure/manager/i_cache_manager.dart';

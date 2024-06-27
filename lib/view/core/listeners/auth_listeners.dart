@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cubtale/app_bloc/login/login_bloc.dart';
 import 'package:cubtale/view/login/login_view.dart';
 import 'package:flutter/material.dart';

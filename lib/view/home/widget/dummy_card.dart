@@ -1,7 +1,6 @@
 import 'package:cubtale/app_bloc/search/search_bloc.dart';
 import 'package:cubtale/core/constants/style_constants.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
-import 'package:cubtale/core/model/customer/customer_model.dart';
 import 'package:cubtale/view/home/widget/customer_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,7 +52,7 @@ class DummyCard extends StatelessWidget {
                         end: Alignment.bottomRight,
                         colors: context.appTheme.isDarkTheme
                             ? [
-                                Color.fromARGB(255, 156, 154, 149)
+                                const Color.fromARGB(255, 156, 154, 149)
                                     .withOpacity(0.7),
                                 Colors.white,
                               ]

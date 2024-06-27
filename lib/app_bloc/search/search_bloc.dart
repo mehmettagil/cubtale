@@ -1,5 +1,6 @@
 import 'dart:async';
 
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:cubtale/basic_structure/failure/search/login_repository_failure.dart';
 import 'package:cubtale/basic_structure/repository/search/i_search_repository.dart';

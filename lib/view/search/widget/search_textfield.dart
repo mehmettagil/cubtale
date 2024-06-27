@@ -35,6 +35,7 @@ class SearchTextField extends StatelessWidget {
                         lastDate: DateTime(2090),
                       );
                       if (getValue != null) {
+                        // ignore: use_build_context_synchronously
                         context.read<SearchBloc>().addSearchTextChangeEvent(
                               searchText:
                                   '${getValue.day}-${getValue.month}-${getValue.year}',

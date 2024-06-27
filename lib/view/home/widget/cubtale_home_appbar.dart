@@ -3,10 +3,8 @@ import 'package:cubtale/app_bloc/navigation/navigation_bloc.dart';
 import 'package:cubtale/app_bloc/search/search_bloc.dart';
 import 'package:cubtale/core/enum/search_type.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cubtale/core/enum/image_constants.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CubTaleHomeAppBar extends StatelessWidget implements PreferredSizeWidget {

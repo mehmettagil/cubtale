@@ -1,4 +1,5 @@
 import 'package:cubtale/app_bloc/login/login_bloc.dart';
+import 'package:cubtale/app_bloc/menu_burger/menu_burger_bloc.dart';
 import 'package:cubtale/core/constants/style_constants.dart';
 import 'package:cubtale/core/enum/image_constants.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
@@ -88,6 +89,9 @@ class MenuProfile extends StatelessWidget {
                         children: [
                           ElevatedButton(
                               onPressed: () {
+                                context
+                                    .read<MenuBurgerBloc>()
+                                    .addMenuBurgerChangeStateEvent();
                                 context
                                     .read<LoginBloc>()
                                     .add(const LoginLogoutEvent());

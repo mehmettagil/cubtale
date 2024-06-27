@@ -53,7 +53,7 @@ class SearchCustomerInfo extends StatelessWidget {
                                       color: context
                                           .appTheme.colors.customerTextColor),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
@@ -74,7 +74,7 @@ class SearchCustomerInfo extends StatelessWidget {
                                       color: context
                                           .appTheme.colors.customerTextColor),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                                 Text(state.customerModel![0].accMail,

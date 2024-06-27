@@ -1,10 +1,11 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cubtale/core/enum/search_type.dart';
 
 import 'package:cubtale/core/mixin/api_header_getter_mixin.dart';
-import 'package:cubtale/core/model/customer/customer_model.dart';
 
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';

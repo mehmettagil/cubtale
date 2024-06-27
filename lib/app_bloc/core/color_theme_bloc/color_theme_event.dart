@@ -16,8 +16,3 @@ final class ColorThemeDarkSelectedEvent extends ColorThemeEvent {
   @override
   List<Object?> get props => [];
 }
-
-final class ColorThemeSystemSelectedEvent extends ColorThemeEvent {
-  @override
-  List<Object?> get props => [];
-}

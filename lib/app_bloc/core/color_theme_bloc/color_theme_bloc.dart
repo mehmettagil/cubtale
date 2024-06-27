@@ -20,8 +20,6 @@ class ColorThemeBloc extends Bloc<ColorThemeEvent, ColorThemeState> {
           await _onLightSelected(event, emit);
         } else if (event is ColorThemeDarkSelectedEvent) {
           await _onDarkSelected(event, emit);
-        } else if (event is ColorThemeSystemSelectedEvent) {
-          await _onSystemSelected(event, emit);
         }
       },
       // sequential transformer ensures that events are processed one at a time, in sequence.
@@ -42,10 +40,6 @@ class ColorThemeBloc extends Bloc<ColorThemeEvent, ColorThemeState> {
     add(ColorThemeDarkSelectedEvent());
   }
 
-  void addSystemSelected() {
-    add(ColorThemeSystemSelectedEvent());
-  }
-
   Future<void> _onColorThemeInitializedEvent(
     ColorThemeInitializedEvent event,
     Emitter<ColorThemeState> emit,
@@ -56,10 +50,8 @@ class ColorThemeBloc extends Bloc<ColorThemeEvent, ColorThemeState> {
       emit(state.copyWith(theme: ThemeEnum.light));
     } else if (theme == _dark) {
       emit(state.copyWith(theme: ThemeEnum.dark));
-    } else if (theme == _system) {
-      emit(state.copyWith(theme: ThemeEnum.system));
     } else {
-      emit(state.copyWith(theme: ThemeEnum.system));
+      emit(state.copyWith(theme: ThemeEnum.light));
     }
   }
 
@@ -87,21 +79,8 @@ class ColorThemeBloc extends Bloc<ColorThemeEvent, ColorThemeState> {
     emit(state.copyWith(theme: ThemeEnum.dark));
   }
 
-  Future<void> _onSystemSelected(
-    ColorThemeSystemSelectedEvent event,
-    Emitter<ColorThemeState> emit,
-  ) async {
-    await _iCacheController.writeInt(
-      key: CacheKey.COLOR_THEME,
-      value: _system,
-    );
-
-    emit(state.copyWith(theme: ThemeEnum.system));
-  }
-
   final ICacheManager _iCacheController;
 
   static const _dark = -1;
   static const _light = 1;
-  static const _system = 0;
 }

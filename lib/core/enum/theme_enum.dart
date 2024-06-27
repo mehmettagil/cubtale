@@ -1,8 +1,6 @@
-
 enum ThemeEnum {
   light('light'),
-  dark('dark'),
-  system('system');
+  dark('dark');
 
   final String value;
   const ThemeEnum(this.value);
