@@ -4,28 +4,34 @@ class SearchState extends Equatable {
   const SearchState({
     required this.searchText,
     required this.processFailureOrUnitOption,
+    required this.processFailureOrTodayUserOption,
   });
 
   factory SearchState.initial() {
-    return const SearchState(
+    return SearchState(
       searchText: "",
-      processFailureOrUnitOption: None(),
+      processFailureOrUnitOption: none(),
+      processFailureOrTodayUserOption: none(),
     );
   }
 
   final String searchText;
   final Option<Either<SearchRepositoryFailure, List<CustomerModel>>>
       processFailureOrUnitOption;
-
-  SearchState copyWith({
-    String? searchText,
-    Option<Either<SearchRepositoryFailure, List<CustomerModel>>>?
-        processFailureOrUnitOption,
-  }) {
+  final Option<Either<SearchRepositoryFailure, List<CustomerModel>>>
+      processFailureOrTodayUserOption;
+  SearchState copyWith(
+      {String? searchText,
+      Option<Either<SearchRepositoryFailure, List<CustomerModel>>>?
+          processFailureOrUnitOption,
+      Option<Either<SearchRepositoryFailure, List<CustomerModel>>>?
+          processFailureOrTodayUserOption}) {
     return SearchState(
       searchText: searchText ?? this.searchText,
       processFailureOrUnitOption:
           processFailureOrUnitOption ?? this.processFailureOrUnitOption,
+      processFailureOrTodayUserOption: processFailureOrTodayUserOption ??
+          this.processFailureOrTodayUserOption,
     );
   }
 
@@ -34,7 +40,14 @@ class SearchState extends Equatable {
         () => null, (a) => a.fold((l) => null, (r) => r));
     return customerModel;
   }
+  List<CustomerModel>? get todayCustomerModel {
+    final customerModel = processFailureOrTodayUserOption.fold(
+        () => null, (a) => a.fold((l) => null, (r) => r));
+    return customerModel;
+  }
+
 
   @override
-  List<Object> get props => [searchText, processFailureOrUnitOption];
+  List<Object> get props =>
+      [searchText, processFailureOrUnitOption, processFailureOrTodayUserOption];
 }

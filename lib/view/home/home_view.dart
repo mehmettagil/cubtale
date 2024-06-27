@@ -1,15 +1,12 @@
 import 'package:cubtale/app_bloc/navigation/navigation_bloc.dart';
 import 'package:cubtale/app_bloc/search/search_bloc.dart';
 import 'package:cubtale/core/constants/style_constants.dart';
-import 'package:cubtale/core/enum/image_constants.dart';
 import 'package:cubtale/core/enum/search_type.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
 import 'package:cubtale/view/home/widget/cubtale_home_appbar.dart';
 import 'package:cubtale/view/home/widget/dummy_view.dart';
 import 'package:cubtale/view/home/widget/searh_customer_info.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeView extends StatefulWidget {
@@ -25,6 +22,11 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   TextEditingController controller = TextEditingController();
+  @override
+  void initState() {
+    context.read<SearchBloc>().addSearchTodayNewUserEvent();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +79,7 @@ class _HomeViewState extends State<HomeView> {
               BlocBuilder<NavigationBloc, NavigationState>(
                 builder: (context, state) {
                   if (state.searchType == null) {
-                    return DummyView();
+                    return const DummyView();
                   } else {
                     return Center(
                       child: Container(
@@ -91,9 +93,9 @@ class _HomeViewState extends State<HomeView> {
                                 color: context.appTheme.colors.borderColor,
                                 width: 2),
                             boxShadow: [
-                              BoxShadow(
+                              const BoxShadow(
                                 color: Colors.grey,
-                                offset: const Offset(0, 0),
+                                offset: Offset(0, 0),
                                 blurRadius: 6,
                               ),
                             ]),
@@ -195,7 +197,8 @@ class _HomeViewState extends State<HomeView> {
                                                             .withOpacity(0.4),
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.all(
+                                                          const BorderRadius
+                                                              .all(
                                                               Radius.circular(
                                                                   6))),
                                                   focusedBorder:
@@ -206,7 +209,7 @@ class _HomeViewState extends State<HomeView> {
                                                           .withOpacity(0.4),
                                                     ),
                                                     borderRadius:
-                                                        BorderRadius.all(
+                                                        const BorderRadius.all(
                                                             Radius.circular(
                                                                 10)),
                                                   ),
@@ -222,8 +225,8 @@ class _HomeViewState extends State<HomeView> {
                                                                     0.4),
                                                           ),
                                                           borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
+                                                              const BorderRadius
+                                                                  .all(Radius
                                                                       .circular(
                                                                           10))),
                                                 ),

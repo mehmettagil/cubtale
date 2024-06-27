@@ -20,6 +20,9 @@ class SearchTextChangeEvent extends SearchEvent {
 class SearchClearEvent extends SearchEvent {
   const SearchClearEvent();
 }
+class SearchTodayNewUserEvent extends SearchEvent {
+  const SearchTodayNewUserEvent();
+}
 
 class SearchCompleteEvent extends SearchEvent {
   final SearchType searchType;

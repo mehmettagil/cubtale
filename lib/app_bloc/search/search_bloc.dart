@@ -6,7 +6,7 @@ import 'package:cubtale/basic_structure/repository/search/i_search_repository.da
 import 'package:cubtale/core/enum/search_type.dart';
 import 'package:cubtale/core/mixin/api_header_getter_mixin.dart';
 import 'package:cubtale/core/model/customer/customer_model.dart';
-
+import 'package:intl/intl.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
@@ -23,6 +23,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
     );
     on<SearchTextChangeEvent>(
       _onSearchEmailChangeEvent,
+    );
+    on<SearchTodayNewUserEvent>(
+      _onSearchTodayNewUserEvent,
     );
 
     on<SearchClearEvent>(
@@ -44,6 +47,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
 
   addSearchCompleteEvent({required SearchType searchType}) {
     add(SearchCompleteEvent(searchType: searchType));
+  }
+
+  addSearchTodayNewUserEvent() {
+    add(const SearchTodayNewUserEvent());
   }
 
   Future<void> _onSearchEmailChangeEvent(
@@ -97,5 +104,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState>
       processFailureOrUnitOption: none(),
       searchText: "",
     ));
+  }
+
+  Future<void> _onSearchTodayNewUserEvent(
+      SearchTodayNewUserEvent event, Emitter<SearchState> emit) async {
+    final accCreationDate = DateTime.now();
+    final formattedDate = DateFormat('dd-MM-yyyy').format(accCreationDate);
+    final checkSearch = await _iSearchRepository.searchDate(
+        accCreationDate: formattedDate, apiHeaderCallback: apiHeaderCallback);
+    emit(state.copyWith(processFailureOrTodayUserOption: some(checkSearch)));
   }
 }
