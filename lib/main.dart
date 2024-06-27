@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             title: 'CubTale App',
+            debugShowCheckedModeBanner: false,
             theme: state.theme == ThemeEnum.light
                 ? ThemeData.light()
                 : ThemeData.dark(),

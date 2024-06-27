@@ -102,11 +102,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState>
       LoginLogoutEvent event, Emitter<LoginState> emit) async {
     await _iCacheManager.delete(key: CacheKey.USER_DATA);
     await _iCacheManager.delete(key: CacheKey.LAST_LOGIN);
-    emit(state.copyWith(processFailureOrUnitOption: none()));
+    emit(state.copyWith(
+        processFailureOrUnitOption: none(), email: "", password: ""));
   }
 
   Future<void> _onLoginFetchEvent(
       LoginFetchEvent event, Emitter<LoginState> emit) async {
+    emit(state.copyWith(email: "", password: ""));
     final userData = _iCacheManager.readMap(key: CacheKey.USER_DATA);
     if (userData != null) {
       final lastLogin = _iCacheManager.readString(key: CacheKey.LAST_LOGIN);
