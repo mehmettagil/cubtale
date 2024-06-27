@@ -4,7 +4,6 @@ import 'package:cubtale/app_bloc/menu_burger/menu_burger_bloc.dart';
 import 'package:cubtale/app_bloc/navigation/navigation_bloc.dart';
 import 'package:cubtale/app_bloc/search/search_bloc.dart';
 import 'package:cubtale/core/enum/theme_enum.dart';
-import 'package:cubtale/core/init/extension/context_extension.dart';
 import 'package:cubtale/injection.dart';
 import 'package:cubtale/view/login/login_view.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final injected = await setupInjection();
+   await setupInjection();
 
   runApp(const MyApp());
 }

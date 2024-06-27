@@ -8,6 +8,8 @@ import 'package:cubtale/view/login/widget/error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+part "../core/listeners/login_chack_listener.dart";
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -19,58 +21,20 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.appTheme.colors.appBarColor,
-      appBar: const CubTaleLoginAppBar(),
-      body: BlocListener<LoginBloc, LoginState>(
-        listenWhen: (previous, current) {
-          return previous.processFailureOrUnitOption !=
-              current.processFailureOrUnitOption;
-        },
-        listener: (context, state) {
-          if (state.processFailureOrUnitOption.isSome()) {
-            final failure =
-                state.processFailureOrUnitOption.fold(() => null, (a) => a);
-            if (failure!.isRight()) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const HomeView(
-                              index: 1,
-                            )));
-              });
-            }
-          }
-        },
-        child: Container(
-          decoration: BoxDecoration(
-              color: context.appTheme.colors.backgroundColor,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(30),
-              )),
-          child: BlocBuilder<LoginBloc, LoginState>(
-            buildWhen: (previous, current) {
-              return previous.processFailureOrUnitOption !=
-                  current.processFailureOrUnitOption;
-            },
-            builder: (context, state) {
-              if (state.processFailureOrUnitOption.isSome()) {
-                final failure =
-                    state.processFailureOrUnitOption.fold(() => null, (a) => a);
-                if (failure!.isLeft()) {
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const ErrorView(errorMessage: "HATA");
-                      },
-                    );
-                    context.read<LoginBloc>().add(const LoginClearEvent());
-                  });
-                }
-              }
-
-              return Column(
+        backgroundColor: context.appTheme.colors.appBarColor,
+        appBar: const CubTaleLoginAppBar(),
+        body: MultiBlocListener(
+          listeners: [
+            _getLoginCheckListener(),
+            _getLoginCheckErrorListener(),
+          ],
+          child: Container(
+              decoration: BoxDecoration(
+                  color: context.appTheme.colors.backgroundColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                  )),
+              child: Column(
                 children: [
                   SizedBox(
                     height: context.height * 0.1,
@@ -86,73 +50,71 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Column(
                         children: [
                           const SizedBox(height: 30),
-                          Container(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: context.width * 0.08),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(StringConstants.userName,
-                                      style: f18w700.copyWith(
-                                        color: context.appTheme.colors.basic,
-                                      )),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  BlocBuilder<LoginBloc, LoginState>(
-                                    buildWhen: (previous, current) {
-                                      return previous.email != current.email;
-                                    },
-                                    builder: (context, state) {
-                                      return TextField(
-                                        onChanged: (value) {
-                                          context
-                                              .read<LoginBloc>()
-                                              .addLoginEmailChangeEvent(
-                                                  email: value);
-                                        },
-                                        decoration: _inputDecoration(context),
-                                        style: TextStyle(
-                                          color: context.appTheme.colors.basic,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    StringConstants.password,
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: context.width * 0.08),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(StringConstants.userName,
                                     style: f18w700.copyWith(
                                       color: context.appTheme.colors.basic,
-                                    ),
+                                    )),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                BlocBuilder<LoginBloc, LoginState>(
+                                  buildWhen: (previous, current) {
+                                    return previous.email != current.email;
+                                  },
+                                  builder: (context, state) {
+                                    return TextField(
+                                      onChanged: (value) {
+                                        context
+                                            .read<LoginBloc>()
+                                            .addLoginEmailChangeEvent(
+                                                email: value);
+                                      },
+                                      decoration: _inputDecoration(context),
+                                      style: TextStyle(
+                                        color: context.appTheme.colors.basic,
+                                      ),
+                                    );
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Text(
+                                  StringConstants.password,
+                                  style: f18w700.copyWith(
+                                    color: context.appTheme.colors.basic,
                                   ),
-                                  const SizedBox(height: 10),
-                                  BlocBuilder<LoginBloc, LoginState>(
-                                    buildWhen: (previous, current) {
-                                      return previous.password !=
-                                          current.password;
-                                    },
-                                    builder: (context, state) {
-                                      return TextField(
-                                        onChanged: (value) {
-                                          context
-                                              .read<LoginBloc>()
-                                              .addLoginPasswordChangeEvent(
-                                                  password: value);
-                                        },
-                                        obscureText: true,
-                                        decoration: _inputDecoration(context),
-                                        style: TextStyle(
-                                          color: context.appTheme.colors.basic,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ),
+                                ),
+                                const SizedBox(height: 10),
+                                BlocBuilder<LoginBloc, LoginState>(
+                                  buildWhen: (previous, current) {
+                                    return previous.password !=
+                                        current.password;
+                                  },
+                                  builder: (context, state) {
+                                    return TextField(
+                                      onChanged: (value) {
+                                        context
+                                            .read<LoginBloc>()
+                                            .addLoginPasswordChangeEvent(
+                                                password: value);
+                                      },
+                                      obscureText: true,
+                                      decoration: _inputDecoration(context),
+                                      style: TextStyle(
+                                        color: context.appTheme.colors.basic,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                           SizedBox(height: context.height / 20),
@@ -194,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           )
                         ],
@@ -202,12 +164,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ],
-              );
-            },
-          ),
-        ),
-      ),
-    );
+              )),
+        ));
   }
 
   InputDecoration _inputDecoration(BuildContext context) {

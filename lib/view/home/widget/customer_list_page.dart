@@ -7,9 +7,11 @@ class CustomerListPage extends StatelessWidget {
   const CustomerListPage({
     super.key,
     required this.customers,
+    required this.isHomePage,
   });
 
   final List<CustomerModel> customers;
+  final bool isHomePage;
 
   @override
   Widget build(BuildContext context) {
@@ -74,12 +76,18 @@ class CustomerListPage extends StatelessWidget {
                                 Expanded(
                                     child: Text(
                                   firstHalf[index].accName,
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 8),
+                                  style: f8w500.copyWith(
+                                      color: isHomePage
+                                          ? Colors.black
+                                          : context.appTheme.colors.basic),
                                 )),
-                                Text(firstHalf[index].accMail,
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 8)),
+                                Text(
+                                  firstHalf[index].accMail,
+                                  style: f8w500.copyWith(
+                                      color: isHomePage
+                                          ? Colors.black
+                                          : context.appTheme.colors.basic),
+                                ),
                                 const SizedBox(
                                   width: 5,
                                 ),
@@ -109,12 +117,20 @@ class CustomerListPage extends StatelessWidget {
                             Row(
                               children: [
                                 Expanded(
-                                    child: Text(secondHalf[index].accName,
-                                        style: const TextStyle(
-                                            color: Colors.black, fontSize: 8))),
-                                Text(secondHalf[index].accMail,
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 8)),
+                                    child: Text(
+                                  secondHalf[index].accName,
+                                  style: f8w500.copyWith(
+                                      color: isHomePage
+                                          ? Colors.black
+                                          : context.appTheme.colors.basic),
+                                )),
+                                Text(
+                                  secondHalf[index].accMail,
+                                  style: f8w500.copyWith(
+                                      color: isHomePage
+                                          ? Colors.black
+                                          : context.appTheme.colors.basic),
+                                ),
                                 const SizedBox(
                                   width: 5,
                                 ),

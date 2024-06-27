@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cubtale/app_bloc/core/color_theme_bloc/color_theme_bloc.dart';
 import 'package:cubtale/app_bloc/login/login_bloc.dart';
 import 'package:cubtale/app_bloc/menu_burger/menu_burger_bloc.dart';
@@ -23,8 +21,7 @@ Future<bool> setupInjection() async {
   final isPackageDone = await _injectPackages();
   if (!isPackageDone) return false;
 
-  final isStorageDone = await _injectStorages();
-  if (!isStorageDone) return false;
+
 
   final isFacadeDone = await _injectFacades();
   if (!isFacadeDone) return false;
@@ -63,17 +60,9 @@ Future<bool> _injectBlocs() async {
   return true;
 }
 
-Future<bool> _injectStorages() async {
-  //getIt.registerSingleton<IRecordStorage>(RecordStorage());
-
-  return true;
-}
 
 Future<bool> _injectFacades() async {
-  // getIt.registerSingleton<ISplashRepository>(SplashRepository(
-  //   getIt<MetricHttpClient>(),
-  //   getIt<IUserStorage>(),
-  // ));
+
   getIt.registerSingleton<ICacheManager>(SharedPreferencesCacheManager(
     getIt<SharedPreferences>(),
   ));
@@ -87,8 +76,4 @@ Future<bool> _injectFacades() async {
   return true;
 }
 
-// Future<void> removeInMemoryStorages() async {
-//   await DataSubject.removeAll();
-//   await MemoryStorage.removeAll();
-//   return;
-// }
+

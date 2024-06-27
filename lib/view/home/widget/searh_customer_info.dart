@@ -9,9 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchCustomerInfo extends StatelessWidget {
   const SearchCustomerInfo({
-    Key? key,
+    super.key,
     required this.searchType,
-  }) : super(key: key);
+  });
 
   final SearchType searchType;
 
@@ -23,7 +23,10 @@ class SearchCustomerInfo extends StatelessWidget {
           return const SizedBox();
         } else {
           if (searchType == SearchType.DATE) {
-            return CustomerListPage(customers: state.customerModel!);
+            return CustomerListPage(
+              customers: state.customerModel!,
+              isHomePage: false,
+            );
           } else {
             return Column(
               children: [

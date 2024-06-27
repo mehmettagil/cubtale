@@ -72,7 +72,9 @@ class DummyCard extends StatelessWidget {
                         return const SizedBox();
                       } else {
                         return CustomerListPage(
-                            customers: state.todayCustomerModel!);
+                          customers: state.todayCustomerModel!,
+                          isHomePage: true,
+                        );
                       }
                     },
                   )),

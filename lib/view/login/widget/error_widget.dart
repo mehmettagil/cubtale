@@ -1,3 +1,4 @@
+import 'package:cubtale/core/constants/string_constants.dart';
 import 'package:cubtale/core/constants/style_constants.dart';
 import 'package:cubtale/core/enum/image_constants.dart';
 import 'package:cubtale/core/init/extension/context_extension.dart';
@@ -42,7 +43,7 @@ class _ErrorViewState extends State<ErrorView>
                 height: 30,
               ),
               Text(
-                "Ooops",
+                StringConstants.oops,
                 style:
                     f24w700.copyWith(color: context.appTheme.colors.errorText),
               ),
@@ -50,7 +51,7 @@ class _ErrorViewState extends State<ErrorView>
                 height: 5,
               ),
               Text(
-                "Something",
+                StringConstants.wentWrong,
                 style:
                     f24w700.copyWith(color: context.appTheme.colors.errorText),
               ),
@@ -58,7 +59,7 @@ class _ErrorViewState extends State<ErrorView>
                 height: 5,
               ),
               Text(
-                "went wrong !",
+                StringConstants.wentWrong,
                 style:
                     f24w700.copyWith(color: context.appTheme.colors.errorText),
               ),
@@ -85,7 +86,7 @@ class _ErrorViewState extends State<ErrorView>
                                   width: 3)))),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 11),
-                    child: Text("Try Again",
+                    child: Text(StringConstants.tryAgain,
                         style: f16w600.copyWith(
                           color: const Color.fromARGB(255, 217, 100, 98),
                         )),
